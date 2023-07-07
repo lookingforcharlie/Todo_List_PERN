@@ -19,6 +19,7 @@ async function startServer() {
 
     // Start listening to the port
     app.listen(PORT, (err?: Error) => {
+      ``;
       if (err) {
         return console.log('The error for listening the port:', err);
       }
@@ -28,12 +29,7 @@ async function startServer() {
     console.error('Error connecting to the database:', error);
   }
 }
-// Building the routes
-// test route
-app.get('/', async (req: Request, res: Response) => {
-  res.json({ message: 'Welcome home !!!!' });
-});
-
+// Building the routes for todo function
 // Get all todos
 app.get('/todos', async (req: Request, res: Response) => {
   try {
@@ -116,6 +112,13 @@ app.delete('/todos/:id', async (req: Request, res: Response) => {
   } catch (error: unknown) {
     console.log((error as Error).message);
   }
+});
+
+// Building routes for Login
+// test routes
+// test route
+app.get('/login', async (req: Request, res: Response) => {
+  res.json({ message: 'Login page !!!!' });
 });
 
 startServer();

@@ -2,13 +2,19 @@
 
 - Node.JS, Express.JS, TypeScript
 
-### JWT, Authentication, and Authorization
+## Overview for Authentication, Authorization, and JWT
 
 - Authentication is the process of checking if you really are the person you claim to be.
   1. Are you really Charlie?, let me see your id.
 - Authorization which come after authentication is the process of checking of depending on your status and credentials, what are you allowed to do.
-  1. Hi Charlie, here is your JSON WEB TOKEN that stores all your information. With this JWT, you are able to do so on and so forth, the rest you can't do in our facility
-- So JWT happens during the process of authorization.
+  1. Hi Charlie, here is your JSON WEB TOKEN that stores all your information and our associated signature. With this JWT, you are able to do so on and so forth, the rest you can't do in our facility
+- So JWT happens during the process of authorization after authentication is completed.
+
+## JWT - Json Web Token
+
 - JWT contains 3 parts: header, payload, and signature.
 - JWT can be decrypted easily by atob() method in console, don't store your personal info inside JWT.
 - The purpose of JWT is to make sure the person we interact with in the application is real, not to store secret info.
+- JWT sent between server to client using HTTP headers. It can be stored in cookie or local storage, and it will be passed in every subsequent request.
+- HTTP headers are key value pairs. The key for passing JWT is 'Authorization', value is 'Bearer JWT'.
+- OAuth is a secure way to send JWT.
