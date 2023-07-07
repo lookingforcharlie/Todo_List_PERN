@@ -54,16 +54,15 @@ const EditTodoModal: FC<EditTodoProps> = ({
         Edit
       </button>
       {isModalOpen && (
-        <div className='fixed inset-0 flex items-center justify-center z-999'>
-          {/* Blurred background */}
-          {/* <div className='absolute inset-0 bg-gray-900 opacity-50 filter blur-lg' /> */}
-          <div className='bg-white px-4 shadow-md w-[400px] h-[200px] flex flex-col justify-between'>
+        <div className='fixed inset-0 flex items-center justify-center backdrop-blur-sm'>
+          {/* backdrop-blur-sm creates Blurred background */}
+          <div className='bg-gray-200 px-4 shadow-md w-[400px] h-[200px] flex flex-col justify-between'>
             {/* Title and X button */}
             <div className='flex items-center justify-between py-2 pt-3 border-b-2 border-b-gray-400'>
               <h1 className='text-xl font-semibold'>Editing Todo </h1>
               <div
                 onClick={handleCancelAndClose}
-                className='cursor-pointer text-xl'
+                className='cursor-pointer text-2xl font-semibold'
               >
                 x
               </div>
@@ -73,7 +72,7 @@ const EditTodoModal: FC<EditTodoProps> = ({
               <input
                 type='text'
                 defaultValue={newInput}
-                className='border border-gray-200 focus:outline-none w-full py-2 px-4 rounded-lg'
+                className='border border-gray-400 focus:outline-none w-full py-2 px-4 rounded-lg'
                 onChange={(e) => setNewInput(e.target.value)}
               />
             </div>
