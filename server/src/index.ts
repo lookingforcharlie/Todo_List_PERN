@@ -1,11 +1,16 @@
 import cors from 'cors';
+import { config } from 'dotenv';
 import express, { Request, Response } from 'express';
+import morgan from 'morgan';
 import { pool } from './db';
+import jwtAuth from './routes/jwtAuth';
 
+config();
 const app = express();
 const PORT = (process.env.PORT || 3001) as number;
 
 app.use(cors());
+app.use(morgan('tiny'));
 
 // The only way we can get data from frontend is accessing the object of 'req.body'
 // express.json() gives us the access of body
@@ -29,6 +34,11 @@ async function startServer() {
     console.error('Error connecting to the database:', error);
   }
 }
+
+// Building routes for Login
+app.use('/auth', jwtAuth);
+
+// ---------------------------------------------------------------------
 // Building the routes for todo function
 // Get all todos
 app.get('/todos', async (req: Request, res: Response) => {
@@ -112,13 +122,6 @@ app.delete('/todos/:id', async (req: Request, res: Response) => {
   } catch (error: unknown) {
     console.log((error as Error).message);
   }
-});
-
-// Building routes for Login
-// test routes
-// test route
-app.get('/login', async (req: Request, res: Response) => {
-  res.json({ message: 'Login page !!!!' });
 });
 
 startServer();
