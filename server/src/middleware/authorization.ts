@@ -7,7 +7,7 @@ config();
 
 const jwtSecretKey = process.env.jwtSecretKey as string;
 
-interface CustomRequest extends Request {
+export interface CustomRequest extends Request {
   user?: string;
 }
 

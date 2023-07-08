@@ -1,8 +1,9 @@
 import bcrypt from 'bcrypt';
 import { Request, Response, Router } from 'express';
 import { pool } from '../db';
-// import the function for generating token
+import authorization from '../middleware/authorization';
 import validateUserInput from '../middleware/validateUserInput';
+// import the function for generating token
 import jwtGenerator from '../utils/jwtGenerator';
 
 type UserType = {
@@ -106,7 +107,15 @@ router.post(
 );
 
 // The Client side constantly check this router to verify users
-router.get('/is-verify', (req: Request, res: Response) => {});
+router.get('/is-verify', authorization, (req: Request, res: Response) => {
+  try {
+    // return back a true statement, if the token is valid
+    res.json(true);
+  } catch (error: unknown) {
+    console.error((error as Error).message);
+    res.status(500).send('Server Error');
+  }
+});
 
 export default router;
 

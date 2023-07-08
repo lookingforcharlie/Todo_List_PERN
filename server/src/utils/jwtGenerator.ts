@@ -15,5 +15,5 @@ export default function jwtGenerator(user_id: string) {
   };
 
   // Unit for expiresIn is second
-  return jwt.sign(payload, jwtSecretKey, { expiresIn: 60 });
+  return jwt.sign(payload, jwtSecretKey, { expiresIn: 300 });
 }
