@@ -48,7 +48,7 @@ router.post(
       const token = jwtGenerator(newUser.rows[0].user_id);
 
       // Sending token to the client
-      res.json({ token });
+      res.json({ token, message: 'Signed you up successfully.' });
     } catch (error: unknown) {
       console.error((error as Error).message);
       res.status(500).send('Server Error');
@@ -74,7 +74,7 @@ router.post(
 
       // throw error if user doesn't exit
       if (existedUser.rows.length === 0) {
-        return res.status(401).json('Invalid Credential');
+        return res.status(401).json({ message: 'Invalid Credential' });
       }
 
       // res.json(existedUser.rows[0].user_password);
@@ -91,7 +91,7 @@ router.post(
       console.log('Is password valid? ', validPassword);
 
       if (!validPassword) {
-        return res.status(401).json('Invalid Credential');
+        return res.status(401).json({ message: 'Invalid Credential' });
       }
 
       // 4. Grant authenticated user JWT token

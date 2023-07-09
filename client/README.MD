@@ -16,3 +16,7 @@
 - paginate
 - Create Accessible Tabs for different themes: useContext for theme?
 - Create Header and Footer
+- Register Error handle: focus back to password input when user input different password
+- Register Error handle: make input border red when user input different password
+- Change the animation at the login page
+- Add infrastructure at Home page

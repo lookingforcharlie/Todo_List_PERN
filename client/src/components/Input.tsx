@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { TodoList } from '../App';
+import { TodoList } from '../pages/TodoApp';
 
 interface InputProps {
   setTodoList: Dispatch<SetStateAction<TodoList[]>>;

@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { TodoList } from '../App';
+import { TodoList } from '../pages/TodoApp';
 import EditTodoModal from './EditTodoModal';
 
 interface ListTodosProps {
@@ -33,12 +33,12 @@ const ListTodos: FC<ListTodosProps> = ({ todoList, setTodoList }) => {
     // which one is better?
   };
   return (
-    <div className='mt-6 mx-4 sm:mx-0 sm:w-[600px] lg:w-[750px] border-2 border-zinc-100 rounded-md'>
+    <div className='mt-6 mx-4 sm:mx-0 sm:w-[600px] lg:w-[750px] border-0 border-zinc-100 rounded-md'>
       {todoList.length > 0 ? (
         todoList.reverse().map((todo) => (
           <div
             key={todo.todo_id}
-            className='flex justify-between items-center border border-b-1 py-2 px-2'
+            className='flex justify-between items-center border border-b-1 py-2 px-2 mb-2 rounded-md'
           >
             <div className='text-zinc-600 flex flex-wrap'>
               {todo.description}

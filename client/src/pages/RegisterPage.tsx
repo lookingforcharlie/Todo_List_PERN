@@ -1,17 +1,17 @@
 import { FC } from 'react';
-import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 import ThreeD from '../components/ThreeD';
 
-interface LoginPageProps {
+interface RegisterPageProps {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LoginPage: FC<LoginPageProps> = ({ setIsAuthenticated }) => {
+const RegisterPage: FC<RegisterPageProps> = ({ setIsAuthenticated }) => {
   return (
     <div className='flex w-full h-screen'>
-      {/* Login part */}
+      {/* Register part */}
       <div className='w-full flex items-start justify-center pt-12 lg:w-1/2'>
-        <LoginForm setIsAuthenticated={setIsAuthenticated} />
+        <RegisterForm setIsAuthenticated={setIsAuthenticated} />
       </div>
 
       {/* Right side of Animation */}
@@ -22,4 +22,4 @@ const LoginPage: FC<LoginPageProps> = ({ setIsAuthenticated }) => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
