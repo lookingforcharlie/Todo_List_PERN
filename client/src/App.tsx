@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home.tsx';
@@ -9,9 +9,36 @@ import TodoApp from './pages/TodoApp.tsx';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const setAuth = (boolean: boolean) => {
-    setIsAuthenticated(boolean);
+  const checkIfAuthorized = async () => {
+    const user_token = localStorage.token;
+    if (!user_token) {
+      return;
+    } else {
+      try {
+        const requestOptions = {
+          method: 'GET',
+          headers: {
+            authorization: `Bearer ${user_token}`,
+          },
+        };
+
+        const res = await fetch(
+          'http://localhost:3001/auth/is-verify',
+          requestOptions
+        );
+        const data = await res.json();
+
+        data === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      } catch (error) {
+        console.log((error as Error).message);
+      }
+    }
   };
+
+  // Every time you refresh the page, if token is still valid, you don't need to login again
+  useEffect(() => {
+    checkIfAuthorized();
+  }, []);
 
   return (
     <BrowserRouter>

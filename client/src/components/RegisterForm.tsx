@@ -13,9 +13,9 @@ interface RegisterFormProps {
 }
 
 const RegisterForm: FC<RegisterFormProps> = ({ setIsAuthenticated }) => {
-  const [email, setEmail] = useState<string>('b@g.com');
-  const [password, setPassword] = useState('aaa');
-  const [confirmPassword, setConfirmPassword] = useState('aaa');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [notification, setNotification] = useState<string>(
     'Please enter your credentials.'
   );
@@ -28,7 +28,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ setIsAuthenticated }) => {
       // We gonna use userInput as req.body sending to backend, cos of One value delay pitfall situation
       const userInput: BodyType = { email, password };
 
-      //TODO: Send register request to backend, and navigate to sign in page
+      //TODO: Send register request to backend, and navigate to todo app page
       try {
         const res = await fetch('http://localhost:3001/auth/register', {
           method: 'POST',
@@ -40,14 +40,12 @@ const RegisterForm: FC<RegisterFormProps> = ({ setIsAuthenticated }) => {
         const data = await res.json();
 
         if (data.message === 'User already exists.') {
-          console.log(data);
           setNotification(data.message);
           return;
         }
         if (data.token) {
           // Save token in local storage
           localStorage.setItem('token', data.token);
-          console.log('data is: ', data);
           // setNotification('Signed you up successfully.') literally doesn't work. Why?
           setNotification(data.message);
           setIsAuthenticated(true);

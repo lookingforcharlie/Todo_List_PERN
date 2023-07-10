@@ -10,8 +10,8 @@ interface LoginFormProps {
 }
 
 const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
-  const [email, setEmail] = useState<string>('c@g.com');
-  const [password, setPassword] = useState<string>('aaa');
+  const [email, setEmail] = useState<string>('b@g.com');
+  const [password, setPassword] = useState<string>('qaz123');
 
   const [alertMsg, setAlertMsg] = useState<string>(
     'Please login to see you todo list.'
@@ -21,7 +21,7 @@ const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
     e.preventDefault();
     const userInput = { email, password };
 
-    //TODO: Send register request to backend, and navigate to sign in page
+    //TODO: Send login request to backend, and navigate to todo app page
     try {
       const res = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
@@ -41,6 +41,7 @@ const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
         // Save token in local storage
         localStorage.setItem('token', data.token);
         console.log('data with token: ', data);
+        // when isAuthenticated is true, page directs to todo app page
         setIsAuthenticated(true);
       }
     } catch (error: unknown) {

@@ -23,7 +23,7 @@ const authorizeUser = async (
     const [type, token] = header.split(' ');
 
     if (type !== 'Bearer' || !token) {
-      return res.status(403).json('Not Authorize');
+      return res.status(403).json('Not Authorized');
     }
 
     const payload = jwt.verify(token, jwtSecretKey) as PayloadType;

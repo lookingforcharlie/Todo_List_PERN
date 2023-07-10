@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import icon from '../../public/todo_logo.png';
 
@@ -8,6 +8,43 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ isAuthenticated, setIsAuthenticated }) => {
+  const [userEmail, setUserEmail] = useState<string>('');
+
+  const user_token = localStorage.token;
+
+  // It's a bit overkill to get user email from server, cos user login with user's email
+  // It can be used to retrieve other info, such as user name.
+  // But I didn't create user_name column in the database
+  async function getUserEmail() {
+    try {
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          // 'Content-Type': 'application/json',
+          authorization: `Bearer ${user_token}`,
+        },
+      };
+
+      const res = await fetch('http://localhost:3001/header/', requestOptions);
+      const data = await res.json();
+      console.log('trying to get user email:', data);
+      setUserEmail(data.user_email);
+
+      // Without this condition, every time you refresh the page, isAuthenticated will be true
+      // if (data.user_email === undefined) return;
+      // setIsAuthenticated(true);
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  }
+
+  // If I put [] inside this useEffect, it will occur one state delay situation.
+  // Without [], it runs the effect on every render.
+  // With [], it runs only one time when the component mounts.
+  useEffect(() => {
+    getUserEmail();
+  });
+
   const handleLogout = () => {
     if (isAuthenticated) localStorage.removeItem('token');
     setIsAuthenticated(false);
@@ -19,7 +56,9 @@ const Header: FC<HeaderProps> = ({ isAuthenticated, setIsAuthenticated }) => {
           <img src={icon} className='w-16 md:w-24' />
           <div className='text-base md:text-2xl'>Todo App</div>
         </div>
-        <div className='space-x-4'>
+        <div className='flex items-center space-x-4'>
+          <div>{userEmail && `Hi ${userEmail}`}</div>
+          {/* <div>temp name</div> */}
           {/* Compared with Link, NavLink offers us a class of active, we can leverage it in CSS */}
           <NavLink to='/' className='md:text-xl'>
             Home

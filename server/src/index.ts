@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import express, { Request, Response } from 'express';
 import morgan from 'morgan';
 import { pool } from './db';
-import dashboard from './routes/dashboard';
+import header from './routes/header';
 import jwtAuth from './routes/jwtAuth';
 
 config();
@@ -39,8 +39,8 @@ async function startServer() {
 // Building routes for Login
 app.use('/auth', jwtAuth);
 
-// Building routes for accessing dashboard
-app.use('/dashboard', dashboard);
+// Building routes for accessing header
+app.use('/header', header);
 
 // ---------------------------------------------------------------------
 // Building the routes for todo function

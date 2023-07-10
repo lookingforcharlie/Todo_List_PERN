@@ -23,3 +23,5 @@ router.get('/', authorization, async (req: CustomRequest, res: Response) => {
 });
 
 export default router;
+
+// Let Header component to get the use_email to show on the Navbar
