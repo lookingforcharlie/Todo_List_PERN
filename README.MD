@@ -14,7 +14,6 @@
 - [ ] search by time function
 - [ ] search by word
 - [ ] paginate
-- [] Create Accessible Tabs for different themes: useContext for theme?
 - [x] Create Header and Footer:
 - [ ] Register Error handle: focus back to password input when user input different password
 - [ ] Register Error handle: make input border red when user input different password
@@ -24,3 +23,4 @@
 - [ ] Implement JWT cookie stored
 - [ ] Implement sign in with Google
 - [ ] Fix the footer bug
+- [] Create Accessible Tabs for different themes: useContext for theme?
