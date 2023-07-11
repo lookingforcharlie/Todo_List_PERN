@@ -23,4 +23,4 @@
 - [ ] Implement JWT cookie stored
 - [ ] Implement sign in with Google
 - [ ] Fix the footer bug
-- [] Create Accessible Tabs for different themes: useContext for theme?
+- [ ] Create Accessible Tabs for different themes: useContext for theme?
