@@ -17,7 +17,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ setIsAuthenticated }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [notification, setNotification] = useState<string>(
-    'Please enter your credentials.'
+    'Please fill in to create your account'
   );
 
   // One value delay pitfall occurs, if we implement const [input, setInput] = useState<BodyType>({ email: '', password: '' });

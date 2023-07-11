@@ -27,7 +27,7 @@ const Header: FC<HeaderProps> = ({ isAuthenticated, setIsAuthenticated }) => {
 
       const res = await fetch('http://localhost:3001/header/', requestOptions);
       const data = await res.json();
-      console.log('trying to get user email:', data);
+      console.log('Getting user email in Header component:', data);
       setUserEmail(data.user_email);
 
       // Without this condition, every time you refresh the page, isAuthenticated will be true

@@ -18,3 +18,11 @@
 - JWT sent between server to client using HTTP headers. It can be stored in cookie or local storage, and it will be passed in every subsequent request.
 - HTTP headers are key value pairs. The key for passing JWT is 'Authorization', value is 'Bearer JWT'.
 - OAuth is a secure way to send JWT.
+- When you are JWT, the server doesn't store any data whatsoever. All the related data and token are stored inside JWT.
+
+## Difference between storing JWT in cookie and localStorage
+
+- Cookies are sent automatically from browser to server on every request. Local storage doesn't do that automatically, I need to write JavaScript to make that happen.
+- When I set cookies at httpOnly, client-side JavaScript cannot access the cookie. JavaScript has the full access to local storage.
+- People tends to say JWT stored in cookie is more secure, because malicious software can easily gets your token by localStorage.getItem('yourTokenName').
+- When I set the cookie as httpOnly, the trade-off is that it's no longer platform agnostic, you can only use it for Website development, can't be used for iOS or Android native App.

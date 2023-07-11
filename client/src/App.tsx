@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer.tsx';
 import Header from './components/Header';
 import Home from './components/Home.tsx';
 import LoginPage from './pages/LoginPage.tsx';
@@ -29,6 +30,8 @@ function App() {
         const data = await res.json();
 
         data === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+
+        console.log('Verfied, isAuthenticated is:', isAuthenticated);
       } catch (error) {
         console.log((error as Error).message);
       }
@@ -81,13 +84,14 @@ function App() {
           />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }
 
 export default App;
 
-// This is actually the new way to do the router
+// This is actually the new way to do the router with creating a layout file
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
