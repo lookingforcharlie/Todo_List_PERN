@@ -10,7 +10,7 @@ interface LoginFormProps {
 }
 
 const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
-  const [email, setEmail] = useState<string>('b@g.com');
+  const [email, setEmail] = useState<string>('welcome@todolist.com');
   const [password, setPassword] = useState<string>('qaz123');
 
   const [alertMsg, setAlertMsg] = useState<string>(
@@ -26,7 +26,7 @@ const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
       const res = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
         headers: {
-          'Content-type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(userInput),
       });
@@ -40,11 +40,10 @@ const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
       if (data.token) {
         // Save token in local storage
         localStorage.setItem('token', data.token);
-        console.log('data with token: ', data);
         // when isAuthenticated is true, page directs to todo app page
         setIsAuthenticated(true);
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.log((error as Error).message);
     }
   };
@@ -97,7 +96,7 @@ const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
               Stay signed in
             </label>
           </div>
-          <button className='font-medium text-base text-zinc-800'>
+          <button type='button' className='font-medium text-base text-zinc-800'>
             Forgot password
           </button>
         </div>
@@ -115,7 +114,10 @@ const LoginForm: FC<LoginFormProps> = ({ setIsAuthenticated }) => {
             {/* <hr className='border-gray-300' /> */}
           </div>
 
-          <button className='flex text-base border bg-gray-100 py-3 rounded-lg border-gray-400 justify-center items-center gap-4 mt-0 font-medium shadow-md text-zinc-800'>
+          <button
+            type='button'
+            className='flex text-base border bg-gray-100 py-3 rounded-lg border-gray-400 justify-center items-center gap-4 mt-0 font-medium shadow-md text-zinc-800'
+          >
             <GoogleIcon />
             Sign in with Google
           </button>

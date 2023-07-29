@@ -6,12 +6,12 @@ config();
 const jwtSecretKey = process.env.jwtSecretKey as string;
 
 export type PayloadType = {
-  user: string;
+  userId: string;
 };
 
 export default function jwtGenerator(user_id: string) {
   const payload = {
-    user: user_id,
+    userId: user_id,
   };
 
   // Unit for expiresIn is second

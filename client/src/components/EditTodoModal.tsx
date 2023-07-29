@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { TodoList } from '../App';
+import { TodoList } from '../pages/TodoApp';
 
 interface EditTodoProps {
   todoItem: string;
@@ -14,6 +14,8 @@ const EditTodoModal: FC<EditTodoProps> = ({
   setTodoList,
   todoList,
 }) => {
+  const user_token = localStorage.token;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newInput, setNewInput] = useState(todoItem);
 
@@ -33,6 +35,7 @@ const EditTodoModal: FC<EditTodoProps> = ({
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
+        authorization: `Bearer ${user_token}`,
       },
       body: JSON.stringify({ description: text }),
     });

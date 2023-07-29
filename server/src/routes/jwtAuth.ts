@@ -23,6 +23,12 @@ router.post(
       // 1. destructuring req.body to get user_email and user_password
       const { email, password } = req.body;
 
+      console.log(
+        'See your email and password in Register Route:',
+        email,
+        password
+      );
+
       // 2. check if user exist (if user exist then throw error )
       const user = await pool.query(
         'SELECT * FROM users WHERE user_email = $1',
@@ -99,7 +105,7 @@ router.post(
 
       // Sending token to the client
       res.json({ token });
-    } catch (error: unknown) {
+    } catch (error) {
       console.error((error as Error).message);
       res.status(500).send('Server Error');
     }
@@ -111,7 +117,7 @@ router.get('/is-verify', authorization, (req: Request, res: Response) => {
   try {
     // return back a true statement, if the token is valid
     res.json(true);
-  } catch (error: unknown) {
+  } catch (error) {
     console.error((error as Error).message);
     res.status(500).send('Server Error');
   }

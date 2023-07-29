@@ -8,7 +8,7 @@ config();
 const jwtSecretKey = process.env.jwtSecretKey as string;
 
 export interface CustomRequest extends Request {
-  user?: string;
+  userId?: string;
 }
 
 const authorizeUser = async (
@@ -31,10 +31,11 @@ const authorizeUser = async (
     // Create req.user for attaching decoded payload.user to for future use
     // In jwtGenerator.ts file, we've defined payload type
     // payload.user is user_id
-    req.user = payload.user;
+    req.userId = payload.userId;
 
+    console.log('Getting user_id during authorization:', req.userId);
     next();
-  } catch (error: unknown) {
+  } catch (error) {
     console.error((error as Error).message);
     return res.status(403).json('Not Authorized');
   }

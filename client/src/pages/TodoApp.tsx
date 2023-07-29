@@ -18,10 +18,14 @@ const TodoApp: FC<TodoAppProps> = ({ setIsAuthenticated }) => {
   const [todoList, setTodoList] = useState<TodoList[]>([]);
 
   return (
-    <div className='max-w-6xl mx-auto h-screen'>
+    <div className='max-w-6xl mx-auto min-h-screen'>
       <div className='flex flex-col items-center justify-center mt-12'>
         <Input setTodoList={setTodoList} />
-        <ListTodos todoList={todoList} setTodoList={setTodoList} />
+        <ListTodos
+          todoList={todoList}
+          setTodoList={setTodoList}
+          setIsAuthenticated={setIsAuthenticated}
+        />
       </div>
     </div>
   );

@@ -10,8 +10,10 @@ import TodoApp from './pages/TodoApp.tsx';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
+  const user_token = localStorage.token;
+
   const checkIfAuthorized = async () => {
-    const user_token = localStorage.token;
+    console.log('Checking in App.tsx to see if token is valid.');
     if (!user_token) {
       return;
     } else {
@@ -31,7 +33,7 @@ function App() {
 
         data === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
 
-        console.log('Verfied, isAuthenticated is:', isAuthenticated);
+        console.log('Verified, isAuthenticated is:', isAuthenticated);
       } catch (error) {
         console.log((error as Error).message);
       }

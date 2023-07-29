@@ -8,7 +8,7 @@ interface LoginPageProps {
 
 const LoginPage: FC<LoginPageProps> = ({ setIsAuthenticated }) => {
   return (
-    <div className='flex w-full h-screen'>
+    <div className='flex w-full min-h-screen'>
       {/* Login part */}
       <div className='w-full flex items-start justify-center pt-12 lg:w-1/2'>
         <LoginForm setIsAuthenticated={setIsAuthenticated} />

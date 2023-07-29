@@ -7,6 +7,7 @@ interface InputProps {
 
 const Input: FC<InputProps> = ({ setTodoList }) => {
   const [input, setInput] = useState('');
+  const user_token = localStorage.token;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -14,13 +15,14 @@ const Input: FC<InputProps> = ({ setTodoList }) => {
       const res = await fetch('http://localhost:3001/todos/', {
         method: 'POST',
         headers: {
-          'Content-type': 'application/json',
+          'content-type': 'application/json',
+          authorization: `Bearer ${user_token}`,
         },
         body: JSON.stringify({ description: input }),
       });
       const data = await res.json();
       setTodoList(data);
-    } catch (error: unknown) {
+    } catch (error) {
       console.log((error as Error).message);
     }
     setInput('');
@@ -38,7 +40,10 @@ const Input: FC<InputProps> = ({ setTodoList }) => {
           }
           value={input}
         />
-        <button className='border border-gray-400 rounded-lg px-4 shadow-md'>
+        <button
+          className='border border-gray-400 rounded-lg px-4 shadow-md disabled:text-gray-400 disabled:border-gray-200 disabled:shadow-none'
+          disabled={input.trim() === ''}
+        >
           Submit
         </button>
       </form>

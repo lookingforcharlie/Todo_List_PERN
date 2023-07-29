@@ -8,7 +8,7 @@ interface RegisterPageProps {
 
 const RegisterPage: FC<RegisterPageProps> = ({ setIsAuthenticated }) => {
   return (
-    <div className='flex w-full h-screen'>
+    <div className='flex w-full min-h-screen'>
       {/* Register part */}
       <div className='w-full flex items-start justify-center pt-12 lg:w-1/2'>
         <RegisterForm setIsAuthenticated={setIsAuthenticated} />

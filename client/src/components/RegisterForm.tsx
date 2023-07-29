@@ -39,6 +39,12 @@ const RegisterForm: FC<RegisterFormProps> = ({ setIsAuthenticated }) => {
         });
         const data = await res.json();
 
+        console.log('something wrong when registering:', data, res.status);
+
+        if (res.status === 401) {
+          setNotification(data);
+        }
+
         if (data.message === 'User already exists.') {
           setNotification(data.message);
           return;
@@ -50,14 +56,13 @@ const RegisterForm: FC<RegisterFormProps> = ({ setIsAuthenticated }) => {
           setNotification(data.message);
           setIsAuthenticated(true);
         }
-      } catch (error: unknown) {
+      } catch (error) {
         console.log((error as Error).message);
       }
 
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      setNotification('Click Sign Me Up to Register');
     } else {
       setNotification('Password and confirmed password do not match');
       setPassword('');
